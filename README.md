@@ -1,56 +1,59 @@
 # mitsubishi-cnc-m700
-三菱電機CNC M700シリーズとEZSocketを使って通信するPythonのサンプルです。
+Python sample for communication with Mitsubishi Electric CNC M700 series using EZSocket.
 
-Windows環境で、COMオブジェクトを利用することで動作します。
+It works by using COM object in Windows environment.
 
-自身の環境で実装する際のヒントとしてお使い下さい。
+Please use as a hint when implementing in your own environment.
 
-# 実装機能
-- DデバイスとMデバイスへの値の読み込みと書き込み
-- NCの状態やツール番号や回転数などの情報取得
-- NC内のディレクト検索とファイルの操作（read・write・delete）
+# Implementation function
+-Reading and writing values ​​to D and M devices
+-Acquisition of information such as NC status, tool number and rotation speed
+-Directory search and file operations in NC (read / write / delete)
 
-# 参考情報
+# Reference information
 
-## Windows環境で、以下の三菱CNC通信用ソフトウェア開発キットが必要です
+## The following Mitsubishi CNC communication software development kit is required in a Windows environment.
 http://www.mitsubishielectric.co.jp/fa/download/software/detailsearch.do?mode=software&kisyu=/cnc&shiryoid=0000000030&lang=1&select=0&softid=1&infostatus=3_11_2&viewradio=0&viewstatus=&viewpos=
 
-### 三菱CNC用通信ソフトウェア　FCSB1224W000 リファレンスマニュアル
+### Mitsubishi CNC Communication Software FCSB1224W000 Reference Manual
 http://www.mitsubishielectric.co.jp/fa/document/others/cnc/ib-1501208/IB-1501208.pdf
 
-### COMへVARIANT型の引数をPythonから渡す方法
+### How to pass a VARIANT type argument from Python to COM
 http://docs.activestate.com/activepython/3.4/pywin32/html/com/win32com/HTML/variant.html
 https://mail.python.org/pipermail/python-win32/2012-October/012575.html
 
-### pythoncom.VT_VARIANTの型一覧
+### pythoncom.VT_VARIANT type list
 http://nullege.com/codes/search/pythoncom.VT_VARIANT
 
 
-# 使い方
+# How to use
 
-```
+`` `
 # Open connection
-m700 = M700.get_connection('192.168.1.10:683')
+m700 = M700.get_connection ('192.168.1.10:683')
 
-# NC内情報取得
-m700.get_drive_infomation()
-m700.get_run_status()
-m700.get_alerm()
+# Get information in NC
+m700.get_drive_infomation ()
+m700.get_run_status ()
+m700.get_alarm ()
 
-# Dデバイスへの操作
-m700.write_dev('M900', 1)
-m700.read_dev('M900') # -> 1
+# Operation on D device
+m700.write_dev ('M900', 1)
+m700.read_dev ('M900') #-> 1
 
-# Mデバイスへの操作
-m700.write_dev('D200', 10)
-m700.read_dev('D200') # -> 10
+# Operations on M device
+m700.write_dev ('D200', 10)
+m700.read_dev ('D200') #-> 10
 
-# 加工プログラムのファイルの操作（read・write・delete）
-drivenm = m700.get_drive_infomation()
-m700.write_file(drivenm + '¥PRG¥USER¥__TEST__.txt', b'TEST_WRITE')
-m700.read_file(drivenm + '¥PRG¥USER¥__TEST__.txt')
-m700.delete_file(drivenm + '¥PRG¥USER¥__TEST__.txt')
+# Manipulate machining program files (read / write / delete)
+drivenm = m700.get_drive_infomation ()
+m700.write_file (drivenm + '\ PRG \ USER \ __ TEST __. txt', b'TEST_WRITE ')
+m700.read_file (drivenm + '\ PRG \ USER \ __ TEST __. txt')
+m700.delete_file (drivenm + '\ PRG \ USER \ __ TEST __. txt')
 
 # Close connection
-m700.close()
-```
+m700.close ()
+`` `
+[TODO] 
+* Update tests to include changes made
+* Complete translations

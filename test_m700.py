@@ -46,7 +46,7 @@ class TestM700(unittest.TestCase):
         self.assertIs(type(self.m700.get_mgn_ready()), int)
         self.assertIs(type(self.m700.get_toolset_size()), int)
         self.assertIs(type(self.m700.get_program_number(M700.ProgramType.MAIN)), str)
-        self.assertIs(type(self.m700.get_alerm()), str)
+        self.assertIs(type(self.m700.get_alarm()), str)
 
     def test_operate_program_file(self):
         '''加工プログラム読み書きテスト。'''
