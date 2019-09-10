@@ -28,9 +28,11 @@ http://nullege.com/codes/search/pythoncom.VT_VARIANT
 
 # How to use
 
-`` `
+```
+from m700 import M700
+
 # Open connection
-m700 = M700.get_connection ('192.168.1.10:683')
+m700 = M700.get_connection ('192.168.1.10:683') #683 is the default port for Mitsubishi M70 CNC controllers
 
 # Get information in NC
 m700.get_drive_infomation ()
@@ -53,7 +55,7 @@ m700.delete_file (drivenm + '\ PRG \ USER \ __ TEST __. txt')
 
 # Close connection
 m700.close ()
-`` `
+```
 [TODO] 
 * Update tests to include changes made
 * Complete translations

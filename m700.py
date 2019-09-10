@@ -350,7 +350,7 @@ class M700 ():
             self.__raise_error (errcd)
             return msg
         
-    def get_alerm (self):
+    def get_alarm (self):
         '''Get alerts.
 
         Return:
